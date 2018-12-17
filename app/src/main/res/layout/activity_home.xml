@@ -27,13 +27,35 @@
             android:layout_height="300dp"
             android:layout_margin="32dp"
             android:background="@color/colorAccent"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ini ceritanya carousel boi"/>
+        </LinearLayout>
     </LinearLayout>
+
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        app:menu="@menu/navigation"
+        android:background="#B79E77"
         android:layout_gravity="start"
-        app:menu="@menu/navigation" />
+        app:itemTextColor="@android:color/white"
+        app:itemTextAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="60dp"
+            android:src="@drawable/laundry_logo"
+            android:translationZ="1dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="#FDFBEE"
+            android:layout_gravity="bottom"></LinearLayout>
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
