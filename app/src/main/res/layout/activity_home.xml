@@ -1,49 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#87B2BD">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <LinearLayout
+    <include
+        layout="@layout/app_bar_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/text_greeting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="asdasdasdasd"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_margin="16dp"
-            android:textColor="@android:color/white"/>
-        <LinearLayout
-            android:id="@+id/images_carousel"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_margin="32dp"
-            android:background="@color/colorAccent"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ini ceritanya carousel boi"/>
-        </LinearLayout>
-    </LinearLayout>
-
+        android:layout_height="match_parent" />
 
     <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:menu="@menu/navigation"
-        android:background="#B79E77"
         android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        android:background="#B79E77"
         app:itemTextColor="@android:color/white"
-        app:itemTextAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle">
+        app:menu="@menu/navigation">
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"

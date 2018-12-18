@@ -1,77 +1,92 @@
 package binus.viali.bluelaundry;
 
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import binus.viali.bluelaundry.fragments.AboutFragment;
+import binus.viali.bluelaundry.fragments.HomeFragment;
+import binus.viali.bluelaundry.fragments.ItemsFragment;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView greetings;
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        greetings = findViewById(R.id.text_greeting);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
-    String username = getIntent().getStringExtra(Login.EXTRA_USERNAME);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
-        greetings.setText("Welcome, " + username);
-
-    mDrawerLayout = findViewById(R.id.drawer_layout);
-    mToggle = new ActionBarDrawerToggle(Home.this, mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-
-        mDrawerLayout.addDrawerListener(mToggle);
-        mToggle.syncState();
-
-    getSupportActionBar().setTitle("Blue Laundry");
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-}
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(mToggle.onOptionsItemSelected(item)){ //mastiin yg dipencet itu tombol hamburger di toolbar
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        displaySelectedScreen(R.id.nav_home);
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem menuItem) {
-        displaySelectedScreen(menuItem.getItemId());
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        displaySelectedScreen(item.getItemId());
         return true;
     }
 
     private void displaySelectedScreen(int itemId){
-        //Fragment fragment = null;
+        Fragment fragment = null;
+
         switch (itemId){
             case R.id.nav_home:
-                Toast.makeText(getApplicationContext(),"Ini Home Mas", Toast.LENGTH_SHORT).show();
+                fragment = new HomeFragment();
                 break;
             case R.id.nav_items:
-                Toast.makeText(getApplicationContext(),"Ini Items Mas", Toast.LENGTH_SHORT).show();
+                fragment = new ItemsFragment();
                 break;
             case R.id.nav_about:
-                Toast.makeText(getApplicationContext(),"Ini About Mas", Toast.LENGTH_SHORT).show();
+                fragment = new AboutFragment();
                 break;
             case R.id.nav_logout:
-                Toast.makeText(getApplicationContext(),"Ini Logout Mas", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, Login.class);
+                startActivity(intent);
                 break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        if(fragment != null){
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
+        }
+
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout.closeDrawer(GravityCompat.START);
     }
 }
