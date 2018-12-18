@@ -14,6 +14,11 @@ public class ItemsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        //TODO: Find a way to show custom list views and onClick goes to detail Activity
+
+        //TODO: Create item detail activity
+
         return inflater.inflate(R.layout.fragment_items, container, false);
     }
 
