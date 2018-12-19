@@ -45,7 +45,7 @@ public class Login extends AppCompatActivity{
                     etPass.setError("Password must be filled!");
                 } else{
                     Intent i = new Intent(Login.this, Home.class);
-                    i.putExtra(EXTRA_USERNAME, username); //passing string ke halaman intent
+                    i.putExtra(EXTRA_USERNAME, username);
                     startActivity(i);
                 }
             }

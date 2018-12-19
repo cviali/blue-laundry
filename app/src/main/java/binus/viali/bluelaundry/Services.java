@@ -2,65 +2,37 @@ package binus.viali.bluelaundry;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
 
-public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    private TextView greetings;
-    public static String greetingName;
-    private ViewPager viewPager;
-    private ViewPagerAdapter viewPagerAdapter;
-    private Handler handler;
+public class Services extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //TODO: ask to reduce the images' resolution to improve performance
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_services);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        greetingName = getIntent().getStringExtra(Login.EXTRA_USERNAME);
-        greetings = findViewById(R.id.text_greeting);
-        greetings.setText("Hello " + greetingName);
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-        //todo: figure out how to scroll backwards (with index--?)
-        viewPager = findViewById(R.id.view_pager);
-        viewPagerAdapter = new ViewPagerAdapter(Home.this);
-        viewPager.setAdapter(viewPagerAdapter);
-
-        handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                int index = viewPager.getCurrentItem();
-                if(index == 5){
-                    index = 0;
-                }else{
-                    index++;
-                }
-                viewPager.setCurrentItem(index);
-                handler.postDelayed(this, 3000);
-            }
-        }, 3000);
     }
 
     @Override
