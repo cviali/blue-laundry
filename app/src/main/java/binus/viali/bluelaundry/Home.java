@@ -18,9 +18,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     private TextView greetings;
     public static String greetingName;
-    private ViewPager viewPager;
-    private ViewPagerAdapter viewPagerAdapter;
-    private Handler handler;
+    private ViewPager viewPager, viewPager2;
+    private ViewPagerAdapter viewPagerAdapter, viewPagerAdapter2;
+    private Handler handler, handler2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,25 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 }
                 viewPager.setCurrentItem(index);
                 handler.postDelayed(this, 3000);
+            }
+        }, 3000);
+
+        viewPager2 = findViewById(R.id.view_pager2);
+        viewPagerAdapter2 = new ViewPagerAdapter(Home.this);
+        viewPager2.setAdapter(viewPagerAdapter2);
+
+        handler2 = new Handler();
+        handler2.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int index = viewPager2.getCurrentItem();
+                if(index == 0){
+                    index = 5;
+                }else{
+                    index--;
+                }
+                viewPager2.setCurrentItem(index);
+                handler2.postDelayed(this, 3000);
             }
         }, 3000);
     }

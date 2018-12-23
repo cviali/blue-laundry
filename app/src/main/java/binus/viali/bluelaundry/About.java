@@ -13,12 +13,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 public class About extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Button btnContact, btnService;
+    private Button btnContact, btnService, btnAccordion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,23 @@ public class About extends AppCompatActivity
                 displaySelectedScreen(2);
             }
         });
+
+        btnAccordion = findViewById(R.id.button_accordion);
+        btnAccordion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LinearLayout findMagicLl = (LinearLayout) findViewById(R.id.layout_accordion);
+                if(findMagicLl.getVisibility() == View.VISIBLE){
+                    btnAccordion.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_down_black_24dp, 0);
+                    findMagicLl.setVisibility(View.GONE);
+                } else {
+                    btnAccordion.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_up_black_24dp, 0);
+                    findMagicLl.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
+
     }
 
     @Override
