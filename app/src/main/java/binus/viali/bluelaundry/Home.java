@@ -41,8 +41,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-        //todo: figure out how to scroll backwards (with index--?)
         viewPager = findViewById(R.id.view_pager);
         viewPagerAdapter = new ViewPagerAdapter(Home.this);
         viewPager.setAdapter(viewPagerAdapter);

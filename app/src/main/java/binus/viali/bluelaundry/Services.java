@@ -19,7 +19,6 @@ public class Services extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //TODO: ask to reduce the images' resolution to improve performance
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_services);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

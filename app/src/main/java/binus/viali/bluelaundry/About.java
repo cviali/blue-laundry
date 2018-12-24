@@ -39,8 +39,6 @@ public class About extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //todo: figure out how to implement accordion views
-
         btnContact = findViewById(R.id.button_contact);
         btnContact.setOnClickListener(new View.OnClickListener() {
             @Override
