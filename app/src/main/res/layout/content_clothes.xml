@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/about_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Clothes"
     android:background="#87B2BD"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    tools:showIn="@layout/app_bar_clothes">
     <TextView
         android:id="@+id/text_items"
         android:layout_width="match_parent"
@@ -13,7 +16,7 @@
         android:background="#716658"
         android:gravity="center"
         android:padding="16dp"
-        android:text="Items"
+        android:text="Clothes"
         android:textColor="@android:color/white"
         android:textSize="24dp"
         android:textStyle="bold" />
@@ -31,14 +34,12 @@
             android:gravity="center">
             <ImageView
                 android:id="@+id/image_logo"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="30dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="12dp"
                 android:adjustViewBounds="true"
-                android:contentDescription="this is logo"
-                android:padding="8dp"
-                android:src="@drawable/ic_launcher_background" />
+                android:contentDescription="this is logo"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/layout_list"
@@ -47,6 +48,7 @@
             android:orientation="vertical">
 
             <ListView
+                android:id="@+id/list_clothes"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
@@ -56,5 +58,4 @@
         </LinearLayout>
 
     </LinearLayout>
-
 </LinearLayout>

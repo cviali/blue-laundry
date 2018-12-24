@@ -35,6 +35,14 @@
         <activity
             android:name=".Services"
             android:label="@string/title_activity_services"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Clothes"
+            android:label="@string/title_activity_clothes"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ClothesDetail"
+            android:label="@string/title_activity_clothes_detail"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
