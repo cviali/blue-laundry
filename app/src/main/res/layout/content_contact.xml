@@ -173,7 +173,7 @@
                         android:layout_marginTop="2dp"
                         android:text="Sudirman Jakarta Barat"
                         android:textColor="#C2B59B"
-                        android:textSize="8dp" />
+                        android:textSize="10sp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

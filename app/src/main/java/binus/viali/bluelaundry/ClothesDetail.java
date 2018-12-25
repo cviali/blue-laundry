@@ -4,8 +4,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -14,7 +12,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,13 +26,13 @@ public class ClothesDetail extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     List<ClothesDetailList> itemList = new ArrayList<>();
-    public String index, qtyString;
+    public String index, totalPrice;
+    public int calcPrice;
 
     public ImageView image;
     public TextView itemName, desc, desc2, price;
-    public Button submit;
+    public Button submit, back;
     public EditText qty;
-    public int calcPrice = 0, quantity = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +40,7 @@ public class ClothesDetail extends AppCompatActivity
         setContentView(R.layout.activity_clothes_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Detail Item");
+        setTitle("Item Detail");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -83,7 +80,7 @@ public class ClothesDetail extends AppCompatActivity
                 itemName.setText(itemList.get(0).title);
                 desc.setText(itemList.get(0).desc);
                 desc2.setText(itemList.get(0).desc2);
-                price.setText("Rp. " + itemList.get(0).price + " /pcs");
+                price.setText("Rp. " + itemList.get(0).price + " / pcs");
                 calcPrice = itemList.get(0).price;
                 break;
             case "1":
@@ -91,7 +88,7 @@ public class ClothesDetail extends AppCompatActivity
                 itemName.setText(itemList.get(1).title);
                 desc.setText(itemList.get(1).desc);
                 desc2.setText(itemList.get(1).desc2);
-                price.setText("Rp. " + itemList.get(1).price + " /pcs");
+                price.setText("Rp. " + itemList.get(1).price + " / pcs");
                 calcPrice = itemList.get(1).price;
                 break;
             case "2":
@@ -99,7 +96,7 @@ public class ClothesDetail extends AppCompatActivity
                 itemName.setText(itemList.get(2).title);
                 desc.setText(itemList.get(2).desc);
                 desc2.setText(itemList.get(2).desc2);
-                price.setText("Rp. " + itemList.get(2).price + " /pcs");
+                price.setText("Rp. " + itemList.get(2).price + " / pcs");
                 calcPrice = itemList.get(2).price;
                 break;
             case "3":
@@ -107,7 +104,7 @@ public class ClothesDetail extends AppCompatActivity
                 itemName.setText(itemList.get(3).title);
                 desc.setText(itemList.get(3).desc);
                 desc2.setText(itemList.get(3).desc2);
-                price.setText("Rp. " + itemList.get(3).price + " /pcs");
+                price.setText("Rp. " + itemList.get(3).price + " / pcs");
                 calcPrice = itemList.get(3).price;
                 break;
             case "4":
@@ -115,7 +112,7 @@ public class ClothesDetail extends AppCompatActivity
                 itemName.setText(itemList.get(4).title);
                 desc.setText(itemList.get(4).desc);
                 desc2.setText(itemList.get(4).desc2);
-                price.setText("Rp. " + itemList.get(4).price + " /pcs");
+                price.setText("Rp. " + itemList.get(4).price + " / pcs");
                 calcPrice = itemList.get(4).price;
                 break;
             case "5":
@@ -123,7 +120,7 @@ public class ClothesDetail extends AppCompatActivity
                 itemName.setText(itemList.get(5).title);
                 desc.setText(itemList.get(5).desc);
                 desc2.setText(itemList.get(5).desc2);
-                price.setText("Rp. " + itemList.get(5).price + " /pcs");
+                price.setText("Rp. " + itemList.get(5).price + " / pcs");
                 calcPrice = itemList.get(5).price;
                 break;
             case "6":
@@ -131,7 +128,7 @@ public class ClothesDetail extends AppCompatActivity
                 itemName.setText(itemList.get(6).title);
                 desc.setText(itemList.get(6).desc);
                 desc2.setText(itemList.get(6).desc2);
-                price.setText("Rp. " + itemList.get(6).price + " /pcs");
+                price.setText("Rp. " + itemList.get(6).price + " / pcs");
                 calcPrice = itemList.get(6).price;
                 break;
             case "7":
@@ -139,7 +136,7 @@ public class ClothesDetail extends AppCompatActivity
                 itemName.setText(itemList.get(7).title);
                 desc.setText(itemList.get(7).desc);
                 desc2.setText(itemList.get(7).desc2);
-                price.setText("Rp. " + itemList.get(7).price + " /pcs");
+                price.setText("Rp. " + itemList.get(7).price + " / pcs");
                 calcPrice = itemList.get(7).price;
                 break;
             case "8":
@@ -147,7 +144,7 @@ public class ClothesDetail extends AppCompatActivity
                 itemName.setText(itemList.get(8).title);
                 desc.setText(itemList.get(8).desc);
                 desc2.setText(itemList.get(8).desc2);
-                price.setText("Rp. " + itemList.get(8).price + " /pcs");
+                price.setText("Rp. " + itemList.get(8).price + " / pcs");
                 calcPrice = itemList.get(8).price;
                 break;
             case "9":
@@ -155,7 +152,7 @@ public class ClothesDetail extends AppCompatActivity
                 itemName.setText(itemList.get(9).title);
                 desc.setText(itemList.get(9).desc);
                 desc2.setText(itemList.get(9).desc2);
-                price.setText("Rp. " + itemList.get(9).price + " /pcs");
+                price.setText("Rp. " + itemList.get(9).price + " / pcs");
                 calcPrice = itemList.get(9).price;
                 break;
             case "10":
@@ -163,39 +160,38 @@ public class ClothesDetail extends AppCompatActivity
                 itemName.setText(itemList.get(10).title);
                 desc.setText(itemList.get(10).desc);
                 desc2.setText(itemList.get(10).desc2);
-                price.setText("Rp. " + itemList.get(10).price + " /pcs");
+                price.setText("Rp. " + itemList.get(10).price + " / pcs");
                 calcPrice = itemList.get(10).price;
                 break;
         }
-        qtyString = qty.getText().toString();
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ClothesDetail.this, "submit bisa pak", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ClothesDetail.this, String.valueOf(calcPrice * Integer.parseInt(qty.getText().toString())), Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(ClothesDetail.this);
+                builder.setTitle("Subtotal")
+                       .setMessage(String.valueOf(calcPrice * Integer.parseInt(qty.getText().toString())))
+                       .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialog, int which) {
+                               startActivity(new Intent(ClothesDetail.this, Items.class));
+                           }
+                       }).setNegativeButton("No, thanks", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                       }).show();
             }
         });
-//        quantity = Integer.parseInt(qty.getText().toString());
-//        submit = findViewById(R.id.button_submit);
-//        submit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(ClothesDetail.this, calcPrice * quantity, Toast.LENGTH_SHORT).show();
-////                AlertDialog.Builder builder = new AlertDialog.Builder(ClothesDetail.this);
-////                int quantity = Integer.parseInt(qty.getText().toString());
-////                builder.setTitle("Subtotal").setMessage(calcPrice * quantity).setPositiveButton("Agree", new DialogInterface.OnClickListener() {
-////                    @Override
-////                    public void onClick(DialogInterface dialog, int which) {
-////                        startActivity(new Intent(ClothesDetail.this, Items.class));
-////                    }
-////                }).setNegativeButton("No, thanks", new DialogInterface.OnClickListener() {
-////                    @Override
-////                    public void onClick(DialogInterface dialog, int which) {
-////                        dialog.dismiss();
-////                    }
-////                }).show();
-//            }
-//        });
+
+        back = findViewById(R.id.button_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClothesDetail.super.onBackPressed();
+            }
+        });
     }
 
     @Override

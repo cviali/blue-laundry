@@ -1,7 +1,6 @@
 package binus.viali.bluelaundry;
 
 import android.graphics.Bitmap;
-import android.widget.ImageView;
 
 public class ClothesList {
 

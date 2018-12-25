@@ -3,8 +3,6 @@ package binus.viali.bluelaundry;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,13 +10,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +50,6 @@ public class Clothes extends AppCompatActivity
         index = intent.getStringExtra("id");
         listView = findViewById(R.id.list_clothes);
         if(index.equals("0")){
-            Toast.makeText(Clothes.this, index, Toast.LENGTH_SHORT).show();
             headerText.setText("Clothes");
             headerImage.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.clothes));listView = findViewById(R.id.list_clothes);
             listClothes.add(new ClothesList(BitmapFactory.decodeResource(getResources(),R.drawable.exclusive_clothes), "Exclusive Clothes", "Suit, Blazer, Blouse, Robe", 0));
@@ -64,7 +59,7 @@ public class Clothes extends AppCompatActivity
             listClothes.add(new ClothesList(BitmapFactory.decodeResource(getResources(),R.drawable.accessories), "Accessories", "Tie, Hat, Belt, Slayer, Socks, Hijab, Scarf, Underwear", 4));
             listClothes.add(new ClothesList(BitmapFactory.decodeResource(getResources(),R.drawable.shoes), "Shoes", "Leather, Suede, Canvas", 5));
         }else{
-            Toast.makeText(Clothes.this, index, Toast.LENGTH_SHORT).show();
+            setTitle("Others");
             headerText.setText("Others");
             headerImage.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.others));
             listClothes.add(new ClothesList(BitmapFactory.decodeResource(getResources(),R.drawable.alpha), "Alpha", "Carpet, Sprai, Blanket, Bed Cover, Bed Sheet, Gordyn", 6));
