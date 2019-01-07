@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -26,8 +27,8 @@ public class ClothesDetail extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     List<ClothesDetailList> itemList = new ArrayList<>();
-    public String index, totalPrice;
-    public int calcPrice;
+    public String totalPrice;
+    public int index, calcPrice;
 
     public ImageView image;
     public TextView itemName, desc, desc2, price;
@@ -52,7 +53,7 @@ public class ClothesDetail extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         Intent intent = getIntent();
-        index = intent.getStringExtra("id");
+        index = Integer.parseInt(intent.getStringExtra("id"));
 
         itemList.add(new ClothesDetailList(0, BitmapFactory.decodeResource(getResources(),R.drawable.exclusive_clothes), "Exclusive Clothes", "Suit, Blazer, Blouse, Robe", "Banyak orang tidak tahu merawat pakaian terbaik mereka dengan baik. Kami memiliki banyak cara dan proses untuk menjadikan pakaian terbaikmu utuh setiap saat", 150000));
         itemList.add(new ClothesDetailList(1, BitmapFactory.decodeResource(getResources(),R.drawable.tops), "Tops", "Shirt, T-Shirt", "Menjadikan pakaian atasanmu selalu membuat kamu lebih percaya diri dan tampil indah kapanpun", 8000));
@@ -74,114 +75,41 @@ public class ClothesDetail extends AppCompatActivity
         qty = findViewById(R.id.input_qty);
         submit = findViewById(R.id.button_submit);
 
-        switch(index){
-            case "0":
-                image.setImageBitmap(itemList.get(0).image);
-                itemName.setText(itemList.get(0).title);
-                desc.setText(itemList.get(0).desc);
-                desc2.setText(itemList.get(0).desc2);
-                price.setText("Rp. " + itemList.get(0).price + " / pcs");
-                calcPrice = itemList.get(0).price;
-                break;
-            case "1":
-                image.setImageBitmap(itemList.get(1).image);
-                itemName.setText(itemList.get(1).title);
-                desc.setText(itemList.get(1).desc);
-                desc2.setText(itemList.get(1).desc2);
-                price.setText("Rp. " + itemList.get(1).price + " / pcs");
-                calcPrice = itemList.get(1).price;
-                break;
-            case "2":
-                image.setImageBitmap(itemList.get(2).image);
-                itemName.setText(itemList.get(2).title);
-                desc.setText(itemList.get(2).desc);
-                desc2.setText(itemList.get(2).desc2);
-                price.setText("Rp. " + itemList.get(2).price + " / pcs");
-                calcPrice = itemList.get(2).price;
-                break;
-            case "3":
-                image.setImageBitmap(itemList.get(3).image);
-                itemName.setText(itemList.get(3).title);
-                desc.setText(itemList.get(3).desc);
-                desc2.setText(itemList.get(3).desc2);
-                price.setText("Rp. " + itemList.get(3).price + " / pcs");
-                calcPrice = itemList.get(3).price;
-                break;
-            case "4":
-                image.setImageBitmap(itemList.get(4).image);
-                itemName.setText(itemList.get(4).title);
-                desc.setText(itemList.get(4).desc);
-                desc2.setText(itemList.get(4).desc2);
-                price.setText("Rp. " + itemList.get(4).price + " / pcs");
-                calcPrice = itemList.get(4).price;
-                break;
-            case "5":
-                image.setImageBitmap(itemList.get(5).image);
-                itemName.setText(itemList.get(5).title);
-                desc.setText(itemList.get(5).desc);
-                desc2.setText(itemList.get(5).desc2);
-                price.setText("Rp. " + itemList.get(5).price + " / pcs");
-                calcPrice = itemList.get(5).price;
-                break;
-            case "6":
-                image.setImageBitmap(itemList.get(6).image);
-                itemName.setText(itemList.get(6).title);
-                desc.setText(itemList.get(6).desc);
-                desc2.setText(itemList.get(6).desc2);
-                price.setText("Rp. " + itemList.get(6).price + " / pcs");
-                calcPrice = itemList.get(6).price;
-                break;
-            case "7":
-                image.setImageBitmap(itemList.get(7).image);
-                itemName.setText(itemList.get(7).title);
-                desc.setText(itemList.get(7).desc);
-                desc2.setText(itemList.get(7).desc2);
-                price.setText("Rp. " + itemList.get(7).price + " / pcs");
-                calcPrice = itemList.get(7).price;
-                break;
-            case "8":
-                image.setImageBitmap(itemList.get(8).image);
-                itemName.setText(itemList.get(8).title);
-                desc.setText(itemList.get(8).desc);
-                desc2.setText(itemList.get(8).desc2);
-                price.setText("Rp. " + itemList.get(8).price + " / pcs");
-                calcPrice = itemList.get(8).price;
-                break;
-            case "9":
-                image.setImageBitmap(itemList.get(9).image);
-                itemName.setText(itemList.get(9).title);
-                desc.setText(itemList.get(9).desc);
-                desc2.setText(itemList.get(9).desc2);
-                price.setText("Rp. " + itemList.get(9).price + " / pcs");
-                calcPrice = itemList.get(9).price;
-                break;
-            case "10":
-                image.setImageBitmap(itemList.get(10).image);
-                itemName.setText(itemList.get(10).title);
-                desc.setText(itemList.get(10).desc);
-                desc2.setText(itemList.get(10).desc2);
-                price.setText("Rp. " + itemList.get(10).price + " / pcs");
-                calcPrice = itemList.get(10).price;
-                break;
-        }
+        image.setImageBitmap(itemList.get(index).image);
+        itemName.setText(itemList.get(index).title);
+        desc.setText(itemList.get(index).desc);
+        desc2.setText(itemList.get(index).desc2);
+        price.setText("Rp. " + itemList.get(index).price + " / pcs");
+        calcPrice = itemList.get(index).price;
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ClothesDetail.this, String.valueOf(calcPrice * Integer.parseInt(qty.getText().toString())), Toast.LENGTH_SHORT).show();
-                AlertDialog.Builder builder = new AlertDialog.Builder(ClothesDetail.this);
-                builder.setTitle("Subtotal")
-                       .setMessage(String.valueOf(calcPrice * Integer.parseInt(qty.getText().toString())))
-                       .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
-                           @Override
-                           public void onClick(DialogInterface dialog, int which) {
-                               startActivity(new Intent(ClothesDetail.this, Items.class));
-                           }
-                       }).setNegativeButton("No, thanks", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                       }).show();
+                String calcQty = qty.getText().toString();
+                if(calcQty.equals("") || Integer.parseInt(qty.getText().toString()) == 0){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ClothesDetail.this);
+                    builder.setMessage("Quantity must be more than 1").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ClothesDetail.this);
+                    builder.setTitle("Subtotal")
+                            .setMessage(String.valueOf(calcPrice * Integer.parseInt(qty.getText().toString())))
+                            .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    startActivity(new Intent(ClothesDetail.this, Items.class));
+                                }
+                            }).setNegativeButton("No, thanks", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+                }
             }
         });
 
