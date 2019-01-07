@@ -35,6 +35,29 @@ public class ClothesDetail extends AppCompatActivity
     public Button submit, back;
     public EditText qty;
 
+    public void seedData(){
+        itemList.add(new ClothesDetailList(0, BitmapFactory.decodeResource(getResources(),R.drawable.exclusive_clothes), "Exclusive Clothes", "Suit, Blazer, Blouse, Robe", "Banyak orang tidak tahu merawat pakaian terbaik mereka dengan baik. Kami memiliki banyak cara dan proses untuk menjadikan pakaian terbaikmu utuh setiap saat", 150000));
+        itemList.add(new ClothesDetailList(1, BitmapFactory.decodeResource(getResources(),R.drawable.tops), "Tops", "Shirt, T-Shirt", "Menjadikan pakaian atasanmu selalu membuat kamu lebih percaya diri dan tampil indah kapanpun", 8000));
+        itemList.add(new ClothesDetailList(2, BitmapFactory.decodeResource(getResources(),R.drawable.bottoms), "Bottoms", "Trouser, Skirt, Denim", "Bawahanmu adalah salah satu bagian terpenting dalam pakaianmu. Jangan jadikan semua itu rusak karena kita tidak peduli, yuk laundry !", 15000));
+        itemList.add(new ClothesDetailList(3, BitmapFactory.decodeResource(getResources(),R.drawable.outers), "Outers", "Parka, Jacket, Sweater, Cardigan, Coat", "Jadikan pakaian luaranmu membuatmu untuk selalu nyaman dan ada ketika kamu butuhkan. Jauhi noda bandel yang dapat merusak luaranmu", 30000));
+        itemList.add(new ClothesDetailList(4, BitmapFactory.decodeResource(getResources(),R.drawable.accessories), "Accessories", "Hat, Slayer, Scarf, Hijab, Belt, Socks, Underwear, Tie", "Aksesorismu adalah hal pendukung yang menjadikanmu lebih terlihat keren, mau aksesorismu tetap tahan lama? yuk di laundry !", 45000));
+        itemList.add(new ClothesDetailList(5, BitmapFactory.decodeResource(getResources(),R.drawable.shoes), "Shoes", "Leather, Canvas, Suede", "Sepatumu akan selalu bersih bagi kami, dari Insole, middlesole, outsole yang mengartikan kami selalu menjaga keutuhan barang dari berbagai sisi", 65000));
+        itemList.add(new ClothesDetailList(6, BitmapFactory.decodeResource(getResources(),R.drawable.alpha), "Alpha", "Carpet, Sprai, Blanket, Gordyn, Bed Cover, Bed Sheet", "Paket Alpha adalah Paket yang menyediakan layanan laundry untuk Big Item", 120000));
+        itemList.add(new ClothesDetailList(7, BitmapFactory.decodeResource(getResources(),R.drawable.bravo), "Bravo", "Towel, Bag", "Paket Bravo adalah Paket yang menyediakan layanan laundry untuk Medium Item", 100000));
+        itemList.add(new ClothesDetailList(8, BitmapFactory.decodeResource(getResources(),R.drawable.charlie), "Charlie", "Prayer Mat, Sarong, Doll, Cotton Fabric", "Paket Charlie adalah Paket yang menyediakan layanan laundry untuk Small Item", 50000));
+        itemList.add(new ClothesDetailList(9, BitmapFactory.decodeResource(getResources(),R.drawable.delta), "Delta", "Wallet, Strap, Glasses", "Paket Delta adalah Paket yang menyediakan layanan laundry untuk Very Small Item", 30000));
+        itemList.add(new ClothesDetailList(10, BitmapFactory.decodeResource(getResources(),R.drawable.echo), "Echo", "Stoler", "Paket Echo adalah Paket yang menyediakan layanan laundry untuk Rare Item", 200000));
+    }
+
+    public void setSelectedData(){
+        image.setImageBitmap(itemList.get(index).image);
+        itemName.setText(itemList.get(index).title);
+        desc.setText(itemList.get(index).desc);
+        desc2.setText(itemList.get(index).desc2);
+        price.setText("Rp. " + itemList.get(index).price + " / pcs");
+        calcPrice = itemList.get(index).price;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,17 +78,7 @@ public class ClothesDetail extends AppCompatActivity
         Intent intent = getIntent();
         index = Integer.parseInt(intent.getStringExtra("id"));
 
-        itemList.add(new ClothesDetailList(0, BitmapFactory.decodeResource(getResources(),R.drawable.exclusive_clothes), "Exclusive Clothes", "Suit, Blazer, Blouse, Robe", "Banyak orang tidak tahu merawat pakaian terbaik mereka dengan baik. Kami memiliki banyak cara dan proses untuk menjadikan pakaian terbaikmu utuh setiap saat", 150000));
-        itemList.add(new ClothesDetailList(1, BitmapFactory.decodeResource(getResources(),R.drawable.tops), "Tops", "Shirt, T-Shirt", "Menjadikan pakaian atasanmu selalu membuat kamu lebih percaya diri dan tampil indah kapanpun", 8000));
-        itemList.add(new ClothesDetailList(2, BitmapFactory.decodeResource(getResources(),R.drawable.bottoms), "Bottoms", "Trouser, Skirt, Denim", "Bawahanmu adalah salah satu bagian terpenting dalam pakaianmu. Jangan jadikan semua itu rusak karena kita tidak peduli, yuk laundry !", 15000));
-        itemList.add(new ClothesDetailList(3, BitmapFactory.decodeResource(getResources(),R.drawable.outers), "Outers", "Parka, Jacket, Sweater, Cardigan, Coat", "Jadikan pakaian luaranmu membuatmu untuk selalu nyaman dan ada ketika kamu butuhkan. Jauhi noda bandel yang dapat merusak luaranmu", 30000));
-        itemList.add(new ClothesDetailList(4, BitmapFactory.decodeResource(getResources(),R.drawable.accessories), "Accessories", "Hat, Slayer, Scarf, Hijab, Belt, Socks, Underwear, Tie", "Aksesorismu adalah hal pendukung yang menjadikanmu lebih terlihat keren, mau aksesorismu tetap tahan lama? yuk di laundry !", 45000));
-        itemList.add(new ClothesDetailList(5, BitmapFactory.decodeResource(getResources(),R.drawable.shoes), "Shoes", "Leather, Canvas, Suede", "Sepatumu akan selalu bersih bagi kami, dari Insole, middlesole, outsole yang mengartikan kami selalu menjaga keutuhan barang dari berbagai sisi", 65000));
-        itemList.add(new ClothesDetailList(6, BitmapFactory.decodeResource(getResources(),R.drawable.alpha), "Alpha", "Carpet, Sprai, Blanket, Gordyn, Bed Cover, Bed Sheet", "Paket Alpha adalah Paket yang menyediakan layanan laundry untuk Big Item", 120000));
-        itemList.add(new ClothesDetailList(7, BitmapFactory.decodeResource(getResources(),R.drawable.bravo), "Bravo", "Towel, Bag", "Paket Bravo adalah Paket yang menyediakan layanan laundry untuk Medium Item", 100000));
-        itemList.add(new ClothesDetailList(8, BitmapFactory.decodeResource(getResources(),R.drawable.charlie), "Charlie", "Prayer Mat, Sarong, Doll, Cotton Fabric", "Paket Charlie adalah Paket yang menyediakan layanan laundry untuk Small Item", 50000));
-        itemList.add(new ClothesDetailList(9, BitmapFactory.decodeResource(getResources(),R.drawable.delta), "Delta", "Wallet, Strap, Glasses", "Paket Delta adalah Paket yang menyediakan layanan laundry untuk Very Small Item", 30000));
-        itemList.add(new ClothesDetailList(10, BitmapFactory.decodeResource(getResources(),R.drawable.echo), "Echo", "Stoler", "Paket Echo adalah Paket yang menyediakan layanan laundry untuk Rare Item", 200000));
+        seedData();
 
         image = findViewById(R.id.item_image);
         itemName = findViewById(R.id.item_name);
@@ -74,13 +87,16 @@ public class ClothesDetail extends AppCompatActivity
         price = findViewById(R.id.text_price);
         qty = findViewById(R.id.input_qty);
         submit = findViewById(R.id.button_submit);
+        back = findViewById(R.id.button_back);
 
-        image.setImageBitmap(itemList.get(index).image);
-        itemName.setText(itemList.get(index).title);
-        desc.setText(itemList.get(index).desc);
-        desc2.setText(itemList.get(index).desc2);
-        price.setText("Rp. " + itemList.get(index).price + " / pcs");
-        calcPrice = itemList.get(index).price;
+        setSelectedData();
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClothesDetail.super.onBackPressed();
+            }
+        });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,14 +126,6 @@ public class ClothesDetail extends AppCompatActivity
                         }
                     }).show();
                 }
-            }
-        });
-
-        back = findViewById(R.id.button_back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClothesDetail.super.onBackPressed();
             }
         });
     }
